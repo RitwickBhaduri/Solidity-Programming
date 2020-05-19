@@ -35,4 +35,12 @@ contract Ballot {
         sender.vote = toProposal;
         proposals[toProposal].voteCount += sender.weight;
     }
+    
+    funtion winningProposal() public constant returns (uint8 _winningProposal) {
+        for (uint8 prop = 0; prop < proposals.length; prop++)
+            if (proposals[prop].voteCount > winningVoteCount) {
+                winningVoteCount = proposals[prop].voteCount;
+                _winningProposal = prop;
+            }
+    }
 }
